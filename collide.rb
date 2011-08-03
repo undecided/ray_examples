@@ -31,6 +31,13 @@ Ray.game "Test" do
       @all << @rect.dup
     end
 
+    always do
+      @all.each { |r| r.pos += [-1, 0]} if holding? :left
+      @all.each { |r| r.pos += [1, 0]} if holding? :right
+      @all.each { |r| r.pos += [0, 1]} if holding? :down
+      @all.each { |r| r.pos += [0, -1]} if holding? :up
+    end
+
     render do |win|
       @all.each {|r| win.draw r }
       win.draw @rect

@@ -1,9 +1,12 @@
 require 'rubygems'
 require 'ray'
 
+
+# Notice an artifact of using the outline is that as the angle approaches
+# 0 on a corner, the corner rounding seems to head towards infinity.
+# spinning_3d_internal improves this by rotating two triangles independantly
 class ScreensaverScene < Ray::Scene
   scene_name :screensaver
-  ITEMS = 10
 
   def triangle(a, b, c)
     tri = Ray::Polygon.new
@@ -12,7 +15,7 @@ class ScreensaverScene < Ray::Scene
     tri.add_point(c, Ray::Color.green, Ray::Color.white)
     tri.filled   = false
     tri.outlined = true
-    tri.outline_width = 1
+    tri.outline_width = 5
     tri
   end
   
@@ -34,7 +37,7 @@ class ScreensaverScene < Ray::Scene
   def register
     angle = 0
     always do
-      angle += 0.05
+      angle += 0.03
       rotate_me(@triangle, angle)
     end
   end

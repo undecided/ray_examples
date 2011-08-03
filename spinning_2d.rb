@@ -3,7 +3,6 @@ require 'ray'
 
 class ScreensaverScene < Ray::Scene
   scene_name :screensaver
-  ITEMS = 10
 
   def triangle(a, b, c)
     tri = Ray::Polygon.new
